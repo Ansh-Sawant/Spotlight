@@ -1,0 +1,22 @@
+.navbarBrand {
+  display: flex;
+  align-items: center;
+}
+
+.lamp {
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+}
+
+.spotlightTitle {
+  font-weight: bold;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 30px;
+  margin-left: 10px;
+}
+
+.categories,
+.login {
+  margin-left: 10px;
+}
