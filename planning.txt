@@ -1,0 +1,8 @@
+Spotlight
+
+Tech: MERN Stack
+
+1. Change the UI.
+2. Login / Signup Feature.
+3. Add Bookmark Feature for saving news.
+4. Floating Menu for showing weather of 4 cities: Mumbai, Delhi, Chennai, Kolkata.
