@@ -3,7 +3,13 @@ import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 const Header = () => {
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+      <Navbar
+        collapseOnSelect
+        expand="lg"
+        bg="light"
+        variant="light"
+        fixed="top"
+      >
         <Navbar.Brand href="#home" className="navbarBrand">
           <img
             src="/lamp.png"
