@@ -9,7 +9,7 @@ const Article = ({ article }) => {
             <Row>
               <Col md={4} xs={12}>
                 <img
-                  src={article.url}
+                  src={article.imageUrl}
                   alt={article.title}
                   className="articleImage"
                 />
@@ -18,16 +18,16 @@ const Article = ({ article }) => {
                 <h4 className="articleTitle">{article.title}</h4>
                 <p className="articleAuthorTime">
                   By {article.author} |{" "}
-                  {new Date(article.timestamp).toDateString()}{" "}
+                  {article.date}{" "}
                 </p>
-                <p className="articleDesc">{article.description}</p>
+                <p className="articleDesc">{article.content}</p>
                 <div className="articleBtnDiv">
                   <button className="articleBtn">
                     <i className="fa fa-star" />
                     &nbsp;Bookmark
                   </button>
                   <button className="articleBtn">
-                    <a href={article.link} target="_bla">
+                    <a href={article.readMoreUrl} target="_bla">
                       <i className="fa fa-book" />
                       &nbsp;Read More
                     </a>

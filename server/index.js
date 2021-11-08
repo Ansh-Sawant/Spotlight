@@ -19,4 +19,6 @@ app.use("/", Route);
 Connection();
 app.listen(PORT, () => console.log(`Server is running on Port ${PORT}`));
 
-DefaultData();
+const category = "all";
+DefaultData(category);
+setInterval(() => DefaultData(category), 3600000);

@@ -1,13 +1,28 @@
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Articles from "./components/Articles";
+import Login from "./components/Login";
+import Bookmarks from "./components/Bookmarks"
 import "./App.css";
 
 const App = () => {
   return (
     <div className="App">
-      <Header />
-      <div style={{ margin: "50px" }}>&nbsp;</div>
-      <Articles />
+      <Router>
+        <Header />
+        <div style={{ margin: "40px" }}>&nbsp;</div>
+        <Switch>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+          <Route exact path="/bookmarks">
+            <Bookmarks />
+          </Route>
+          <Route >
+            <Articles />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 };
