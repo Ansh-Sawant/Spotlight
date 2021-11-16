@@ -4,6 +4,7 @@ import Articles from "./components/Articles";
 import Login from "./components/Login";
 import Bookmarks from "./components/Bookmarks"
 import "./App.css";
+import Signup from "./components/Signup";
 
 const App = () => {
   return (
@@ -17,6 +18,9 @@ const App = () => {
           </Route>
           <Route exact path="/bookmarks">
             <Bookmarks />
+          </Route>
+          <Route exact path="/signup">
+            <Signup />
           </Route>
           <Route >
             <Articles />

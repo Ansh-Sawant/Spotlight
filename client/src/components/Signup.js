@@ -1,7 +1,7 @@
 // import loginPic from "./lampLogin.png";
 import { Col, Container, Row } from "react-bootstrap";
 
-const Login = () => {
+const Signup = () => {
   return (
     <>
       <Container fluid>
@@ -10,9 +10,20 @@ const Login = () => {
           <Col>
             <div className="loginPage">
               <div className="loginDiv">
-                <p className="loginHeading">Login</p>
+                <p className="loginHeading">Sign Up</p>
                 <form className="loginDetails">
-                  
+                  <label for="Name" className="formDetailHeading">
+                    Name
+                  </label>
+                  <br />
+                  <input
+                    type="text"
+                    name="Name"
+                    id="name"
+                    placeholder="&#xF007;   Type Your Name"
+                    className="formInputFields"
+                  />
+                  <br />
                   <label for="Email" className="formDetailHeading">
                     Email
                   </label>
@@ -36,22 +47,34 @@ const Login = () => {
                     placeholder="&#xF023;   Type Your Password"
                     className="formInputFields"
                   />
+                  <br />
+                  <label for="ConfirmPassword" className="formDetailHeading">
+                    Confirm Password
+                  </label>
+                  <br />
+                  <input
+                    type="password"
+                    name="ConfirmPassword"
+                    id="confirmPassword"
+                    placeholder="&#xF023;   Confirm Your Password"
+                    className="formInputFields"
+                  />
 
-                  <p className="loginButton">LOGIN</p>
+                  <p className="loginButton">REGISTER</p>
 
                   <div className="signupDiv">
                     <p
                       className="signupContent"
                       style={{ color: "grey", fontSize: "13px" }}
                     >
-                      Or Sign Up using
+                      Or Sign In using
                     </p>
                     <a
-                      href="./signup"
+                      href="./login"
                       className="signupContent"
                       style={{ textDecoration: "none", color: "darkslategray" }}
                     >
-                      SIGN UP
+                      LOGIN
                     </a>
                   </div>
                 </form>
@@ -65,4 +88,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
