@@ -1,7 +1,28 @@
-// import loginPic from "./lampLogin.png";
+import { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import { login } from "../service/api";
+import { useHistory } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ setLoginUser }) => {
+  let history = useHistory();
+
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUser({
+      ...user,
+      [name]: value,
+    });
+  };
+
+  const goToHome = () => {
+    history.push("/");
+  };
+
   return (
     <>
       <Container fluid>
@@ -12,32 +33,41 @@ const Login = () => {
               <div className="loginDiv">
                 <p className="loginHeading">Login</p>
                 <form className="loginDetails">
-                  
-                  <label for="Email" className="formDetailHeading">
+                  <label htmlFor="email" className="formDetailHeading">
                     Email
                   </label>
                   <br />
                   <input
                     type="email"
-                    name="Email"
+                    name="email"
                     id="email"
                     placeholder="&#xF0E0;   Type Your Email"
                     className="formInputFields"
+                    onChange={handleChange}
                   />
                   <br />
-                  <label for="Password" className="formDetailHeading">
+                  <label htmlFor="password" className="formDetailHeading">
                     Password
                   </label>
                   <br />
                   <input
                     type="password"
-                    name="Password"
+                    name="password"
                     id="password"
                     placeholder="&#xF023;   Type Your Password"
                     className="formInputFields"
+                    onChange={handleChange}
                   />
 
-                  <p className="loginButton">LOGIN</p>
+                  <p
+                    className="loginButton"
+                    onClick={() => {
+                      login(user, setLoginUser);
+                      goToHome();
+                    }}
+                  >
+                    LOGIN
+                  </p>
 
                   <div className="signupDiv">
                     <p

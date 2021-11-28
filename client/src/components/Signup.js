@@ -1,7 +1,23 @@
-// import loginPic from "./lampLogin.png";
+import { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import { register } from "../service/api";
 
 const Signup = () => {
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUser({
+      ...user,
+      [name]: value,
+    });
+  };
+
   return (
     <>
       <Container fluid>
@@ -11,57 +27,60 @@ const Signup = () => {
             <div className="loginPage">
               <div className="loginDiv">
                 <p className="loginHeading">Sign Up</p>
-                <form className="loginDetails">
-                  <label for="Name" className="formDetailHeading">
+                <form className="loginDetails" method="post">
+                  <label htmlFor="name" className="formDetailHeading">
                     Name
                   </label>
                   <br />
                   <input
                     type="text"
-                    name="Name"
-                    id="name"
+                    name="name"
                     placeholder="&#xF007;   Type Your Name"
                     className="formInputFields"
+                    onChange={handleChange}
                   />
                   <br />
-                  <label for="Email" className="formDetailHeading">
+                  <label htmlFor="email" className="formDetailHeading">
                     Email
                   </label>
                   <br />
                   <input
                     type="email"
-                    name="Email"
-                    id="email"
+                    name="email"
                     placeholder="&#xF0E0;   Type Your Email"
                     className="formInputFields"
+                    onChange={handleChange}
                   />
                   <br />
-                  <label for="Password" className="formDetailHeading">
+                  <label htmlFor="password" className="formDetailHeading">
                     Password
                   </label>
                   <br />
                   <input
                     type="password"
-                    name="Password"
-                    id="password"
+                    name="password"
                     placeholder="&#xF023;   Type Your Password"
                     className="formInputFields"
+                    onChange={handleChange}
                   />
                   <br />
-                  <label for="ConfirmPassword" className="formDetailHeading">
+                  <label
+                    htmlFor="confirmPassword"
+                    className="formDetailHeading"
+                  >
                     Confirm Password
                   </label>
                   <br />
                   <input
                     type="password"
-                    name="ConfirmPassword"
-                    id="confirmPassword"
+                    name="confirmPassword"
                     placeholder="&#xF023;   Confirm Your Password"
                     className="formInputFields"
+                    onChange={handleChange}
                   />
-
-                  <p className="loginButton">REGISTER</p>
-
+                  <p className="loginButton" onClick={() => register(user)}>
+                    REGISTER
+                  </p>
                   <div className="signupDiv">
                     <p
                       className="signupContent"

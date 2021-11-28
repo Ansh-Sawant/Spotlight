@@ -1,9 +1,19 @@
 import { Navbar, Nav } from "react-bootstrap";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
+import { useState } from "react";
+import Articles from "./Articles";
+import Login from "./Login";
+import Bookmarks from "./Bookmarks";
+import Signup from "./Signup";
 
 const Header = () => {
+  const [loginUser, setLoginUser] = useState({});
+
   return (
     <>
+      {loginUser && loginUser._id
+        ? console.log(loginUser)
+        : console.log("No User")}
       <Router>
         <Navbar
           collapseOnSelect
@@ -12,40 +22,55 @@ const Header = () => {
           variant="light"
           fixed="top"
         >
-          <Navbar.Brand href="/" className="navbarBrand">
-            <img
-              src="/lamp.png"
-              className="d-inline-block align-top lamp"
-              alt="Spotlight logo"
-            />
-            <span className="spotlightTitle">Spotlight</span>
+          <Navbar.Brand className="navbarBrand">
+            <Link to="/" style={{ color: "black", textDecoration: "none" }}>
+              <img
+                src="/lamp.png"
+                className="d-inline-block align-top lamp"
+                alt="Spotlight logo"
+              />
+              <span className="spotlightTitle">Spotlight</span>
+            </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto"></Nav>
             <Nav>
-              {/* <NavDropdown
-                title="Categories"
-                id="basic-nav-dropdown"
-                className="categories"
-              >
-                <NavDropdown.Item ><Link to="/national" >India</Link></NavDropdown.Item>
-                <NavDropdown.Item href="/business">Business</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Sports</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.4">Politics</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.4">
-                  Technology
-                </NavDropdown.Item>
-              </NavDropdown> */}
-              <Nav.Link href="/bookmarks" className="login">
-                My Bookmarks
+              <Nav.Link className="login">
+                <Link
+                  to="/bookmarks"
+                  style={{ color: "gray", textDecoration: "none" }}
+                >
+                  My Bookmarks
+                </Link>
               </Nav.Link>
-              <Nav.Link eventKey={2} href="/login" className="login">
-                Login
+              <Nav.Link eventKey={2} className="login">
+                <Link
+                  to={loginUser && loginUser._id ? "/" : "/login"}
+                  style={{ color: "gray", textDecoration: "none" }}
+                >
+                  {loginUser && loginUser._id ? loginUser.name : "Login"}
+                </Link>
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
+        <div style={{ margin: "40px" }}>&nbsp;</div>
+
+        <Switch>
+          <Route path="/login">
+            <Login setLoginUser={setLoginUser} />
+          </Route>
+          <Route path="/bookmarks">
+            <Bookmarks />
+          </Route>
+          <Route path="/signup">
+            <Signup />
+          </Route>
+          <Route exact path="/">
+            <Articles loginUser={loginUser} />
+          </Route>
+        </Switch>
       </Router>
     </>
   );

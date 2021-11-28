@@ -1,6 +1,20 @@
 import { Container, Row, Col } from "react-bootstrap";
+import { bookmarks } from "../service/api";
 
-const Article = ({ article }) => {
+const Article = ({ article, loginUser }) => {
+  const bookMarkedNews = {
+    name: loginUser.loginUser.name,
+    email: loginUser.loginUser.email,
+    author: article.author,
+    content: article.content,
+    date: article.date,
+    imageUrl: article.imageUrl,
+    readMoreUrl: article.readMoreUrl,
+    time: article.time,
+    title: article.title,
+    url: article.url,
+  };
+
   return (
     <>
       <div className="articleDiv">
@@ -17,15 +31,24 @@ const Article = ({ article }) => {
               <Col md={8} xs={12}>
                 <h4 className="articleTitle">{article.title}</h4>
                 <p className="articleAuthorTime">
-                  By {article.author} |{" "}
-                  {article.date}{" "}
+                  By {article.author} | {article.date}{" "}
                 </p>
                 <p className="articleDesc">{article.content}</p>
                 <div className="articleBtnDiv">
-                  <button className="articleBtn">
+                  <button
+                    className="articleBtn"
+                    onClick={() => {
+                      if (bookMarkedNews.name) {
+                        bookmarks(bookMarkedNews);
+                      } else {
+                        alert("Please Login First");
+                      }
+                    }}
+                  >
                     <i className="fa fa-star" />
                     &nbsp;Bookmark
                   </button>
+
                   <button className="articleBtn">
                     <a href={article.readMoreUrl} target="_bla">
                       <i className="fa fa-book" />
