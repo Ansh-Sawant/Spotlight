@@ -28,7 +28,9 @@ const register = (user) => {
 const login = (user, setLoginUser) => {
   axios.post(`${URL}/login`, user).then((res) => {
     alert(res.data.message);
-    setLoginUser(res.data.user);
+    if (res.data.user) {
+      setLoginUser(res.data.user);
+    }
   });
 };
 

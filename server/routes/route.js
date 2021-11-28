@@ -3,6 +3,7 @@ import { getNews } from "../controller/news-controller.js";
 import { getBookmarks } from "../controller/bookmarks-controller.js";
 import User from "../modal/user.js";
 import Bookmarks from "../modal/bookmarks.js";
+import bcrypt from "bcryptjs";
 
 const route = express.Router();
 
@@ -23,7 +24,9 @@ route.post("/login", (req, res) => {
         httpOnly: true,
       });
 
-      if (password === user.password) {
+      const isMatch = await bcrypt.compare(password, user.password);
+
+      if (isMatch) {
         res.send({ message: "Login Successfull", user: user });
       } else {
         res.send({ message: "Password didn't match" });
@@ -36,7 +39,7 @@ route.post("/login", (req, res) => {
 
 route.post("/register", (req, res) => {
   const { name, email, password } = req.body;
-  User.findOne({ email: email }, (err, user) => {
+  User.findOne({ email: email }, async (err, user) => {
     if (user) {
       res.send({ message: "User already registerd" });
     } else {
@@ -45,7 +48,7 @@ route.post("/register", (req, res) => {
         email,
         password,
       });
-      user.save((err) => {
+      await user.save((err) => {
         if (err) {
           res.send(err);
         } else {

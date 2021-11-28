@@ -11,9 +11,6 @@ const Header = () => {
 
   return (
     <>
-      {loginUser && loginUser._id
-        ? console.log(loginUser)
-        : console.log("No User")}
       <Router>
         <Navbar
           collapseOnSelect

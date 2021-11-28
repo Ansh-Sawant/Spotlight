@@ -23,7 +23,7 @@ const Bookmark = (loginUser) => {
           return (
             <>
               {bmNews.email === loginUser.loginUser.email ? (
-                <div className="articleDiv" key={bmNews.title}>
+                <div key={bmNews.title} className="articleDiv">
                   <div className="article">
                     <Container>
                       <Row>
