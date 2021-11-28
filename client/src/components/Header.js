@@ -62,7 +62,7 @@ const Header = () => {
             <Login setLoginUser={setLoginUser} />
           </Route>
           <Route path="/bookmarks">
-            <Bookmarks />
+            <Bookmarks loginUser={loginUser} />
           </Route>
           <Route path="/signup">
             <Signup />

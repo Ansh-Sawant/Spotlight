@@ -1,11 +1,14 @@
 import express from "express";
 import { getNews } from "../controller/news-controller.js";
+import { getBookmarks } from "../controller/bookmarks-controller.js";
 import User from "../modal/user.js";
 import Bookmarks from "../modal/bookmarks.js";
 
 const route = express.Router();
 
 route.get("/news", getNews);
+
+route.get("/bookmarkedNews", getBookmarks);
 
 route.post("/login", (req, res) => {
   let token;
@@ -92,6 +95,12 @@ route.post("/bookmarks", (req, res) => {
       });
     }
   });
+});
+
+route.post("/deleteBookmarks", async (req, res) => {
+  const { email, title } = req.body;
+
+  await Bookmarks.deleteOne({ email: email, title: title });
 });
 
 export default route;

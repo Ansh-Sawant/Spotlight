@@ -42,4 +42,27 @@ const bookmarks = (bookmark) => {
   }
 };
 
-export { getNews, register, login, bookmarks };
+const getBookmarks = () => {
+  try {
+    return axios.get(`${URL}/bookmarkedNews`);
+  } catch (error) {
+    console.log(`Error while calling bookmarkedNews API`, error);
+  }
+};
+
+const deleteBookmarks = (email, title) => {
+  const deleteBook = {
+    email,
+    title,
+  };
+
+  try {
+    axios
+      .post(`${URL}/deleteBookmarks`, deleteBook)
+      .then((res) => alert("Bookmark Removed"));
+  } catch (error) {
+    console.log(`Error while calling DeleteBookmarks API`, error);
+  }
+};
+
+export { getNews, register, login, bookmarks, getBookmarks, deleteBookmarks };
