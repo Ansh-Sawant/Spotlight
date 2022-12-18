@@ -6,13 +6,12 @@ const Article = ({ article, loginUser }) => {
     name: loginUser.loginUser.name,
     email: loginUser.loginUser.email,
     author: article.author,
-    content: article.content,
-    date: article.date,
-    imageUrl: article.imageUrl,
-    readMoreUrl: article.readMoreUrl,
-    time: article.time,
     title: article.title,
+    description: article.description,
     url: article.url,
+    urlToImage: article.urlToImage,
+    publishedAt: article.publishedAt,
+    content: article.content,
   };
 
   return (
@@ -23,7 +22,7 @@ const Article = ({ article, loginUser }) => {
             <Row>
               <Col md={4} xs={12}>
                 <img
-                  src={article.imageUrl}
+                  src={article.urlToImage}
                   alt={article.title}
                   className="articleImage"
                 />
@@ -31,9 +30,9 @@ const Article = ({ article, loginUser }) => {
               <Col md={8} xs={12}>
                 <h4 className="articleTitle">{article.title}</h4>
                 <p className="articleAuthorTime">
-                  By {article.author} | {article.date}{" "}
+                  By {article.author} | {article.publishedAt}{" "}
                 </p>
-                <p className="articleDesc">{article.content}</p>
+                <p className="articleDesc">{article.description}</p>
                 <div className="articleBtnDiv">
                   <button
                     className="articleBtn"
@@ -50,7 +49,7 @@ const Article = ({ article, loginUser }) => {
                   </button>
 
                   <button className="articleBtn">
-                    <a href={article.readMoreUrl} target="_bla">
+                    <a href={article.url} target="_bla">
                       <i className="fa fa-book" />
                       &nbsp;Read More
                     </a>

@@ -34,6 +34,9 @@ const Articles = (loginUser) => {
             );
           })}
       </InfiniteScroll>
+      <footer>
+        Made By: Ansh Sawant
+      </footer>
     </>
   );
 };

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { login } from "../service/api";
+// import { login } from "../service/api";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 const Login = ({ setLoginUser }) => {
   let history = useHistory();
@@ -19,8 +20,14 @@ const Login = ({ setLoginUser }) => {
     });
   };
 
-  const goToHome = () => {
-    history.push("/");
+  const login = (user, setLoginUser) => {
+    axios.post(`/login`, user).then((res) => {
+      alert(res.data.message);
+      if (res.data.user) {
+        setLoginUser(res.data.user);
+        history.push("/");
+      }
+    });
   };
 
   return (
@@ -63,7 +70,6 @@ const Login = ({ setLoginUser }) => {
                     className="loginButton"
                     onClick={() => {
                       login(user, setLoginUser);
-                      goToHome();
                     }}
                   >
                     LOGIN
@@ -76,13 +82,18 @@ const Login = ({ setLoginUser }) => {
                     >
                       Or Sign Up using
                     </p>
-                    <a
-                      href="./signup"
+                    <p
                       className="signupContent"
-                      style={{ textDecoration: "none", color: "darkslategray" }}
+                      style={{
+                        cursor: "pointer",
+                        color: "darkslategray",
+                      }}
+                      onClick={() => {
+                        history.push("/signup");
+                      }}
                     >
                       SIGN UP
-                    </a>
+                    </p>
                   </div>
                 </form>
               </div>

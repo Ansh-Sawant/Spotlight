@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import { useHistory } from "react-router";
 import { register } from "../service/api";
 
 const Signup = () => {
+  let history = useHistory();
+
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -88,13 +91,15 @@ const Signup = () => {
                     >
                       Or Sign In using
                     </p>
-                    <a
-                      href="./login"
+                    <p
                       className="signupContent"
-                      style={{ textDecoration: "none", color: "darkslategray" }}
+                      style={{ cursor: "pointer", color: "darkslategray" }}
+                      onClick={() => {
+                        history.push("/login");
+                      }}
                     >
                       LOGIN
-                    </a>
+                    </p>
                   </div>
                 </form>
               </div>

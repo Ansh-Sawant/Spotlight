@@ -9,6 +9,10 @@ const route = express.Router();
 
 route.get("/news", getNews);
 
+// route.get("/login", (req, res) => {
+//   return res.redirect("/");
+// });
+
 route.get("/bookmarkedNews", getBookmarks);
 
 route.post("/login", (req, res) => {
@@ -29,7 +33,7 @@ route.post("/login", (req, res) => {
       if (isMatch) {
         res.send({ message: "Login Successfull", user: user });
       } else {
-        res.send({ message: "Password didn't match" });
+        res.send({ message: "Password is incorrect. Please try again!" });
       }
     } else {
       res.send({ message: "User not registered" });
@@ -64,13 +68,11 @@ route.post("/bookmarks", (req, res) => {
     name,
     email,
     author,
-    content,
-    date,
-    imageUrl,
-    readMoreUrl,
-    time,
+    description,
+    image,
+    timestamp,
     title,
-    url,
+    read_more,
   } = req.body;
 
   Bookmarks.findOne({ email: email, title: title }, (err, user) => {
@@ -81,13 +83,11 @@ route.post("/bookmarks", (req, res) => {
         name,
         email,
         author,
-        content,
-        date,
-        imageUrl,
-        readMoreUrl,
-        time,
+        description,
+        image,
+        timestamp,
         title,
-        url,
+        read_more,
       });
       bookmarks.save((err) => {
         if (err) {

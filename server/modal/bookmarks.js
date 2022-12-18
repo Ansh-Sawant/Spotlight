@@ -5,32 +5,24 @@ const bookmarksSchema = new mongoose.Schema({
   email: String,
   author: {
     type: String,
-    required: true,
-  },
-  content: {
-    type: String,
-    required: true,
-  },
-  date: {
-    type: String,
-    required: true,
-  },
-  imageUrl: {
-    type: String,
-    required: true,
-  },
-  readMoreUrl: {
-    type: String,
-  },
-  time: {
-    type: String,
-    required: true,
   },
   title: {
     type: String,
     required: true,
   },
+  description: {
+    type: String,
+  },
   url: {
+    type: String,
+  },
+  urlToImage: {
+    type: String,
+  },
+  publishedAt: {
+    type: String,
+  },  
+  content: {
     type: String,
   },
 });

@@ -23,6 +23,14 @@ app.use(bodyParser.json());
 app.use("/", Route);
 
 Connection();
+
+app.use(express.static("client/build"));
+
+// Heroku
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+
 app.listen(PORT, () => console.log(`Server is running on Port ${PORT}`));
 
 const category = "all";

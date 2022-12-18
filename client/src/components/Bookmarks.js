@@ -29,7 +29,7 @@ const Bookmark = (loginUser) => {
                       <Row>
                         <Col md={4} xs={12}>
                           <img
-                            src={bmNews.imageUrl}
+                            src={bmNews.urlToImage}
                             alt={bmNews.title}
                             className="articleImage"
                           />
@@ -37,9 +37,9 @@ const Bookmark = (loginUser) => {
                         <Col md={8} xs={12}>
                           <h4 className="articleTitle">{bmNews.title}</h4>
                           <p className="articleAuthorTime">
-                            By {bmNews.author} | {bmNews.date}{" "}
+                            By {bmNews.author} | {bmNews.publishedAt}{" "}
                           </p>
-                          <p className="articleDesc">{bmNews.content}</p>
+                          <p className="articleDesc">{bmNews.description}</p>
                           <div className="articleBtnDiv">
                             <button
                               className="articleBtn"
@@ -55,7 +55,7 @@ const Bookmark = (loginUser) => {
                               &nbsp;Remove
                             </button>
                             <button className="articleBtn">
-                              <a href={bmNews.readMoreUrl} target="_bla">
+                              <a href={bmNews.url} target="_bla">
                                 <i className="fa fa-book" />
                                 &nbsp;Read More
                               </a>

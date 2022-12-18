@@ -25,20 +25,19 @@ const register = (user) => {
   }
 };
 
-const login = (user, setLoginUser) => {
-  axios.post(`${URL}/login`, user).then((res) => {
-    alert(res.data.message);
-    if (res.data.user) {
-      setLoginUser(res.data.user);
-    }
-  });
-};
+// const login = (user, setLoginUser) => {
+//   axios.post(`/login`, user).then((res) => {
+//     alert(res.data.message);
+//     if (res.data.user) {
+//       setLoginUser(res.data.user);
+//       window.history.pushState("pg", "title", "/");
+//     }
+//   });
+// };
 
 const bookmarks = (bookmark) => {
   try {
-    axios
-      .post(`${URL}/bookmarks`, bookmark)
-      .then((res) => alert(res.data.message));
+    axios.post(`${URL}/bookmarks`, bookmark).then((res) => alert(res.data.message));
   } catch (error) {
     console.log(`Error while calling Bookmarks API`, error);
   }
@@ -67,4 +66,4 @@ const deleteBookmarks = (email, title) => {
   }
 };
 
-export { getNews, register, login, bookmarks, getBookmarks, deleteBookmarks };
+export { getNews, register, bookmarks, getBookmarks, deleteBookmarks };
